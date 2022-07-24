@@ -2,34 +2,49 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 const App = () => {
-  const [facts, setFacts] = useState([]);
-  const [novaVar, setNovaVar] = useState(false);
-
-  function getFacts() {
-    fetch("https://api.github.com/users/dzemildupljak")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  useEffect(() => {
-    getFacts();
-    console.log("PRVI USEEFFCT");
-  }, []);
-
-  useEffect(() => {
-    console.log("DRUGI USEEFFCT");
-  }, [novaVar]);
+  let formValue = {
+    name: "",
+    email: "",
+    lastname: "",
+  };
+  const [users, setUsers] = useState({
+    name: "",
+    email: "",
+    lastname: "",
+  });
 
   return (
     <div>
-      {/* {facts.map((el) => {
-        return <h1>{el.fact}</h1>;
-      })} */}
+      <input
+        type="text"
+        placeholder="FirstName"
+        onChange={(e) => {
+          formValue.name = e.target.value;
+        }}
+      />
+      <input
+        type="text"
+        placeholder="LirstName"
+        onChange={(e) => {
+          formValue.lastname = e.target.value;
+        }}
+      />
+      <input
+        type="text"
+        placeholder="email"
+        onChange={(e) => {
+          formValue.email = e.target.value;
+        }}
+      />
+      <button
+        onClick={() => {
+          if (formValue.name && formValue.lastname && formValue.email) {
+            console.log(formValue);
+          }
+        }}
+      >
+        Submit
+      </button>
     </div>
   );
 };

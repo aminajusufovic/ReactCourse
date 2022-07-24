@@ -9,7 +9,7 @@
 }
 h1 {
   font-size: 60px;
-  /* color: white; */
+  color: black;
   border: 1px solid red;
 }
 
@@ -53,6 +53,6 @@ input {
 }
 
 p {
-  color: white;
+  color: black;
   font-size: 23px;
 }
