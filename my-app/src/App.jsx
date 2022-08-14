@@ -1,34 +1,30 @@
-import { Route, Routes, Link } from "react-router-dom";
-import Counter from "./components/Counter";
-import Dropdown from "./components/Dropdown";
-import Todo from "./components/Todo";
+import { useReducer, useState } from "react";
+s;
+const reducer = (state, action) => {
+  console.log(state, action);
+  switch (action.type) {
+    case "increment":
+    case "decrement":
+      return action.data;
+    default:
+      return state;
+  }
+};
 
-import "./App.css";
-function App() {
+const App = () => {
+  const [count, dispatch] = useReducer(reducer, 0);
+  function increment() {
+    dispatch({ type: "increment", data: count + 1 });
+  }
+
+  function decrement() {
+    dispatch({ type: "decrement", data: count - 1 });
+  }
   return (
     <div>
-      <Routes>
-        <Route path={"/counter"} element={<Counter />} />
-        <Route path={"/dropdown"} element={<Dropdown />} />
-        <Route path={"/list"} element={<Todo />} />
-        <Route path={"/"} element={<h1>Welcome</h1>} />
-      </Routes>
-      <div>
-        <Link to={"/"}>
-          <h1>Welcome</h1>
-        </Link>
-        <Link to={"/counter"}>
-          <h1>Counter</h1>
-        </Link>
-        <Link to={"/dropdown"}>
-          <h1>Dropdown</h1>
-        </Link>
-        <Link to={"/list"}>
-          <h1>List</h1>
-        </Link>
-      </div>
+      <button onClick={decrement}></button>
+      <button onClick={increment}></button>
     </div>
   );
-}
-
+};
 export default App;
